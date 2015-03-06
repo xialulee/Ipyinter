@@ -86,7 +86,7 @@ Example:<br/>
 \>\> map = scope.GetBuiltin('map');<br/>
 \>\> map(pyf, li)<br/>
 [100, 101, 102, 103, 104, 105, 106, 107, 108, 109]<br/>
-More examples, see ![Call EnumWindows using Ipyinter](https://github.com/xialulee/Ipyinter/raw/master/examples/enum_win.m).<br/>
+More examples, see ![Call EnumWindows using Ipyinter](https://github.com/xialulee/Ipyinter/raw/master/examples/enum_win.m). (Originally posted on ![http://blog.sina.com.cn/s/blog_4513dde60101kgkz.html](http://blog.sina.com.cn/s/blog_4513dde60101kgkz.html))<br/>
 Notice:<br/>
 The matlab function must using the exact form shown as follows:<br/>
 function RetVal = f(args, kwargs)<br/>
