@@ -78,7 +78,15 @@ Convert a matlab function handle into a python callable object.<br/>
 func: a matlab function handle.<br/>
 Return value: a python callable object.<br/><br/>
 Example:<br/>
-See ![Call EnumWindows using Ipyinter](https://github.com/xialulee/Ipyinter/raw/master/examples/enum_win.m).<br/>
+\>\> f = @(args, kwargs) GetPyObject(args(0)) + 100;<br/>
+\>\> range = scope.GetBuiltin('range');<br/>
+\>\> li = range(int32(10))<br/>
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]<br/>
+\>\> pyf = scope.BuiltFunc(f);<br/>
+\>\> map = scope.GetBuiltin('map');<br/>
+\>\> map(pyf, li)<br/>
+[100, 101, 102, 103, 104, 105, 106, 107, 108, 109]<br/>
+More examples, see ![Call EnumWindows using Ipyinter](https://github.com/xialulee/Ipyinter/raw/master/examples/enum_win.m).<br/>
 Notice:<br/>
 The matlab function must using the exact form shown as follows:<br/>
 function RetVal = f(args, kwargs)<br/>
