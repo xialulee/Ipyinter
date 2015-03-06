@@ -87,10 +87,19 @@ classdef IronPythonScope < handle
         function ret = GetDefaultScope()
             persistent scopeobj;
             if isempty(scopeobj)
-                NET.addAssembly('IronPython');
+                pyasm = NET.addAssembly('IronPython');
                 import IronPython.Hosting.*
-                engine = Python.CreateEngine();
+                engineOpt = NET.createGeneric('System.Collections.Generic.Dictionary', {'System.String', 'System.Object'});
+                engineOpt.Add('Frames', true);
+                engineOpt.Add('FullFrames', true); 
+                % see http://stackoverflow.com/questions/6997832/ironpython-sys-getframe-not-found
+                engine = Python.CreateEngine(engineOpt);
                 paths = engine.GetSearchPaths();
+%                 pypath = fileparts(char(pyasm.AssemblyHandle.Location)); 
+%                 pypath = fullfile(pypath, 'Lib')
+%                 paths.Add(pypath); 
+%                Not working. You should set environment variable
+%                IRONPYTHONPATH
                 dllname = fullfile(fileparts(mfilename('fullpath')), 'MatlabIronPythonTools.dll');
                 if ~exist(dllname, 'file')
                     IronPythonScope.dllgen();
