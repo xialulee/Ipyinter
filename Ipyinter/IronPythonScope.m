@@ -202,6 +202,14 @@ classdef IronPythonScope < handle
                 args = IronPythonObject(args, obj);
                 kwargs = IronPythonObject(kwargs, obj);
                 ret = func(args, kwargs);
+                if isa(ret, 'IronPythonObject')
+                    % The return value of the wrapped function must be a
+                    % .NET compatible object since its wrapper utilizes a delegate defined in C#. 
+                    % However, an instrance of IronPythonObject is a Matlab
+                    % class rather than a .NET class.
+                    ret = GetPyObject(ret); 
+                    % So we get its underlying IronPython Object which is .NET compatible. 
+                end
             end
             newfunc = obj.built_func(MatlabIronPythonTools.func(@wrapper_func));
             funcdoc = help(char(func));
