@@ -78,7 +78,7 @@ Convert a matlab function handle into a python callable object.<br/>
 func: a matlab function handle.<br/>
 Return value: a python callable object.<br/><br/>
 Example:<br/>
-\>\> f = @(args, kwargs) GetPyObject(args(0)) + 100;<br/>
+\>\> f = @(args, kwargs) args(0) + 100;<br/>
 \>\> range = scope.GetBuiltin('range');<br/>
 \>\> li = range(int32(10))<br/>
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]<br/>
